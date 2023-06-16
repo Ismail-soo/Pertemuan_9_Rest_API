@@ -7,7 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pertemuan9restapi.R
 import com.example.pertemuan9restapi.adapter.HomeAdapter
 
 import com.example.pertemuan9restapi.databinding.FragmentHomeBinding
@@ -26,6 +29,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState:
     Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnAdd.setOnClickListener{
+            findNavController().navigate(R.id.action_homeFragment_to_tambahDataFragment)
+        }
+
         val viewModel =
             ViewModelProvider(this).get(ViewModelMahasiswa::class.java)
         viewModel.getDataMahasiswa().observe(viewLifecycleOwner)
@@ -42,4 +50,5 @@ class HomeFragment : Fragment() {
         }
         viewModel.showDataMahasiswa()
     }
+
 }
